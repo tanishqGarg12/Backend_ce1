@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Inventory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h2 class="text-2xl font-semibold mb-4">Edit Inventory Item</h2>
+    <form action="/inventory/update/<%= inventory._id %>" method="POST" class="space-y-4">
+        <div>
+            <label class="block font-medium">Name:</label>
+            <input type="text" name="name" value="<%= inventory.name %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <div>
+            <label class="block font-medium">Category:</label>
+            <input type="text" name="category" value="<%= inventory.category %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <div>
+            <label class="block font-medium">Subcategory:</label>
+            <input type="text" name="subcategory" value="<%= inventory.subcategory %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <div>
+            <label class="block font-medium">Quantity:</label>
+            <input type="number" name="quantity" value="<%= inventory.quantity %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <div>
+            <label class="block font-medium">Unit:</label>
+            <input type="text" name="unit" value="<%= inventory.unit %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <div>
+            <label class="block font-medium">Price:</label>
+            <input type="number" step="0.01" name="price" value="<%= inventory.price %>" class="border border-gray-300 rounded-md p-2 w-full" required>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Update Inventory Item</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-4xl p-8 bg-white shadow-md rounded-lg">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-6">Invoice List</h1>
+        <a href="/invoice/add" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-6 inline-block">Add New Invoice</a>
+        <ul class="space-y-4">
+            <% invoices.forEach(invoice => { %>
+                <li class="bg-white shadow-md rounded-md p-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-semibold"><%= invoice.name %></h3>
+                            <p><strong>Sender:</strong> <%= invoice.senderName %> (<%= invoice.senderContact %>, <%= invoice.senderEmail %>)</p>
+                            <p><strong>Recipient:</strong> <%= invoice.recipientName %> (<%= invoice.recipientContact %>, <%= invoice.recipientEmail %>)</p>
+                            <p><strong>Quantity:</strong> <%= invoice.quantity %> <strong>Price:</strong> <%= invoice.price %> <strong>Tax Rate:</strong> <%= invoice.taxRate %>% <strong>Discount Rate:</strong> <%= invoice.discountRate %>% <strong>Total:</strong> <%= invoice.total %></p>
+                        </div>
+                        <div class="space-x-2">
+                            <a href="/invoice/edit/<%= invoice._id %>" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                            
+                            <form action="/invoice/delete/<%= invoice._id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+</body>
+</html>

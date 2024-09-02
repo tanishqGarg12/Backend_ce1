@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto">
+            <ul class="flex space-x-4">
+                <li><a href="/invoice/list" class="text-white hover:underline">Invoices</a></li>
+                <li><a href="/cart/list" class="text-white hover:underline">Cart</a></li>
+                <li><a href="/inventory/list" class="text-white hover:underline">Inventory</a></li>
+                <li><a href="/category/list" class="text-white hover:underline">Categories</a></li>
+                <li><a href="/users" class="text-white hover:underline">Users</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-bold text-center mb-8">Dashboard</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-blue-500 text-white rounded-lg shadow-lg p-8 flex items-center justify-center">
+                <a href="/invoice/list" class="text-2xl font-bold hover:underline">Invoices</a>
+            </div>
+            <div class="bg-green-500 text-white rounded-lg shadow-lg p-8 flex items-center justify-center">
+                <a href="/cart/list" class="text-2xl font-bold hover:underline">Cart</a>
+            </div>
+            <div class="bg-yellow-500 text-white rounded-lg shadow-lg p-8 flex items-center justify-center">
+                <a href="/inventory/list" class="text-2xl font-bold hover:underline">Inventory</a>
+            </div>
+            <div class="bg-purple-500 text-white rounded-lg shadow-lg p-8 flex items-center justify-center">
+                <a href="/category/list" class="text-2xl font-bold hover:underline">Categories</a>
+            </div>
+            <div class="bg-red-500 text-white rounded-lg shadow-lg p-8 flex items-center justify-center">
+                <a href="/users" class="text-2xl font-bold hover:underline">Users</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<% 
+  const body = `
+    <div class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('/images.png');">
+        <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay for better text visibility -->
+        <div class="relative z-10 text-center text-white p-6 bg-opacity-70 bg-gray-900 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold mb-6">Welcome to the Smart Management Billing System</h2>
+            <p class="mb-8">Use the navigation menu to manage invoices, users, and more.</p>
+            <div class="space-x-4">
+                <a href="/login" class="px-6 py-2 text-lg font-semibold bg-blue-600 rounded-full hover:bg-blue-500">Login</a>
+                <a href="/signup" class="px-6 py-2 text-lg font-semibold bg-green-600 rounded-full hover:bg-green-500">Signup</a>
+            </div>
+        </div>
+    </div>
+  `;
+%>
+
+<%- include('layout', { title: 'Home', body: body }) %>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold tracking-wide"><%= title %></h1>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Home</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Invoices</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Cart</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Inventory</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Categories</a>
+                    </li>
+                    <li>
+                        <a href="/" class="text-lg font-medium hover:text-yellow-300 transition duration-300">Users</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8 bg-white shadow-md rounded-lg mt-8">
+        <%- body %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 Smart Management Billing System. All Rights Reserved.</p>
+            <p class="text-xs mt-1">Designed with ❤️</p>
+        </div>
+    </footer>
+
+</body>
+</html>
