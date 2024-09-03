@@ -10,6 +10,10 @@
 
     <div class="w-full max-w-4xl p-8 bg-white shadow-md rounded-lg">
         <h1 class="text-3xl font-semibold text-gray-900 mb-6">Invoice List</h1>
+        <a href="../dashboard">
+            <button type="submit" class="bg-green-500 text-white  px-4 py-2  rounded-md hover:bg-red-600">Dashboard</button>
+
+        </a>
         <a href="/invoice/add" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-6 inline-block">Add New Invoice</a>
         <ul class="space-y-4">
             <% invoices.forEach(invoice => { %>
@@ -33,6 +37,6 @@
             <% }) %>
         </ul>
     </div>
-
+    
 </body>
 </html>

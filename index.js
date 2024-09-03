@@ -11,13 +11,14 @@ const path = require('path');
 const app = express();
 const url = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000";
 const client = new MongoClient(url);
+const bcrypt = require("bcrypt");
 
 let db;
 
 async function connectDB() {
     try {
         await client.connect();
-        db = client.db("ce1_sbms"); // Set the database name to "ce1_sbms"
+        db = client.db("ce1_sbms"); 
         console.log("Connected to the database");
     } catch (err) {
         console.error("Failed to connect to the database", err);
@@ -45,12 +46,12 @@ app.use((req, res, next) => {
 
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
-    res.render('index');  // Make sure index.ejs exists in views folder
+    res.render('index'); 
 });
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/users', userRoutes);  // Mount user routes
+app.use('/users', userRoutes); 
 app.use('/invoice', invoiceRoutes); 
 app.use('/inventory',inventoryRoutes);
 app.use('/cart',cartRoutes)
@@ -61,7 +62,7 @@ app.use('/category', categoryRoutes);
   app.get('/signup', (req, res) => {
     res.render('signup', {
         title: 'Signup',
-        body: '' // Empty body as the content is directly set in signup.ejs
+        body: ''
     });
 });
 
@@ -69,34 +70,30 @@ app.post('/register', async (req, res) => {
     try {
       const { name, email, password, phone_number, address ,role} = req.body;
   
-      // Validate required fields
+
       if (!name || !email || !password || !phone_number || !address) {
         throw new Error('All fields are required');
       }
   
-      // Check if the user already exists
+
       const existingUser = await req.db.collection('logged_users').findOne({ email });
       if (existingUser) {
         return res.status(400).send('User already exists');
       }
-  
-      // Hash the password for security
-    //   const password_hash = password;
-  
-      // Create the new user object
+      const hpassword = await bcrypt.hash(password,10);
       const newUser = {
         name,
         email,
-        password, // Store the hashed password
+        password:hpassword, 
         phone_number,
         address,
         role,
       };
   
-      // Insert the new user into the database
+
       await req.db.collection('logged_users').insertOne(newUser);
   
-      // Redirect to the login page after successful registration
+
       res.redirect('/login');
     } catch (error) {
       console.error('Error creating user:', error.message);
@@ -113,7 +110,7 @@ app.get('/login', (req, res) => {
   app.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         title: 'dashboard',
-        body: '' // Empty body as the content is directly set in signup.ejs
+        body: '' 
     });
 })
 
@@ -125,25 +122,22 @@ app.get('/login', (req, res) => {
             return res.render('login', { errorMessage: 'Email and password are required' });
         }
 
-        // Find the user by email
+
         const user = await req.db.collection('logged_users').findOne({ email });
 
         if (!user) {
             return res.render('login', { errorMessage: 'Invalid email or password' });
         }
-
-        // Compare the provided password with the stored password
-        // Note: In a real application, passwords should be hashed and compared securely
-        if (user.password !== password) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
             return res.render('login', { errorMessage: 'Invalid email or password' });
         }
 
-        // Store user details in session
         req.session.user_id = user._id;
         req.session.email = user.email;
         req.session.name = user.name;
 
-        // Redirect to dashboard after successful login
+
         res.redirect('/dashboard');
     } catch (error) {
         console.error('Error logging in:', error.message);

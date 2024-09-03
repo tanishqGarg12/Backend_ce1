@@ -6,14 +6,14 @@ exports.getAllCategories = async (req, res) => {
         // Fetch categories from the database
         const categories = await req.db.collection('categories').find({}).toArray();
         
-        console.log("seesion is "+req.session.role)
-        // Render the template with categories and user data
+        // console.log("seesion is "+req.session.role)
+
         res.render('category/list', { 
             title: 'Category List', 
             categories,
             user: {
-                role: req.session.role // Pass user role from session
-            } // Include user object to access role information in EJS
+                role: req.session.role 
+            } 
         });
     } catch (error) {
         res.status(500).send('Error fetching categories: ' + error.message);

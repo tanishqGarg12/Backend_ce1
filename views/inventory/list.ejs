@@ -8,6 +8,10 @@
 </head>
 <body>
     <h2 class="text-2xl font-semibold mb-4">Inventory List</h2>
+    <a href="../dashboard">
+        <button type="submit" class="bg-green-500 text-white  px-4 py-2  rounded-md hover:bg-red-600">Dashboard</button>
+
+    </a>
     <a href="/inventory/add" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 inline-block">Add New Inventory Item</a>
     <ul class="space-y-4">
         <% inventory.forEach(item => { %>
@@ -29,5 +33,11 @@
             </li>
         <% }) %>
     </ul>
+    <footer class="bg-gray-900 text-white p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 Smart Management Billing System. All Rights Reserved.</p>
+            <p class="text-xs mt-1">Designed with ❤️</p>
+        </div>
+    </footer>
 </body>
 </html>
